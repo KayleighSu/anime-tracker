@@ -17,6 +17,20 @@ body {
     display: block;            /* needed for margin auto to work */
 }
 
+/* Seach Input: Mobile */
+@media (max-width: 600px) {
+    #searchInput {
+        width: 90%;
+        padding: 5%;
+        border-radius: 2px;
+        border: none;
+        margin: 0 auto 10 auto;
+        font-size: 1rem;
+        display: block;
+    }
+}
+
+
 /* Carousel */
 
 .carousel-wrapper {
@@ -345,3 +359,4 @@ h1 {
     height: 20px;
     cursor: pointer;
 }
+
