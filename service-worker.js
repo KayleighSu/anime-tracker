@@ -1,28 +1,40 @@
-const cacheName = "anime-tracker-v1";
+// service-worker.js
+
+const CACHE_NAME = "anime-tracker-v2"; // increment version when you update
 const assets = [
-    "/",
-    "/index.html",
-    "/Tracker.css",
-    "/Tracker.js",
-    "/images/",
-    "notes.txt",
-    "notes.html",
-    
+  "/",                    // root
+  "/Tracker.html",
+  "/Tracker.css",
+  "/Tracker.js",
+  "/notes.html",
+  "/notes.txt",
+  // add specific image files here:
+  "/images/alullinthesea.jpg",
+  // add more images as needed
 ];
 
+// Install event: cache files
 self.addEventListener("install", event => {
-    e.waitUntil(
-        caches.open(cacheName).then(cache => {
-            return cache.addAll(assets);
-        })
-    );
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(assets))
+  );
 });
 
-self.addEventListener("fetch", e => {
-    e.respondWith(
-        caches.match(e.request).then(response => {
-            return response || fetch(e.request);
-        })
-    );
+// Activate event: clean up old caches
+self.addEventListener("activate", event => {
+  event.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(
+        keys.filter(key => key !== CACHE_NAME)
+            .map(key => caches.delete(key))
+      )
+    )
+  );
+});
 
+// Fetch event: respond with cache first, then network
+self.addEventListener("fetch", event => {
+  event.respondWith(
+    caches.match(event.request).then(response => response || fetch(event.request))
+  );
 });
