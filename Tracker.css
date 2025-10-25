@@ -1,0 +1,304 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(153, 192, 190);
+    padding: 20px;
+    color: #000000;
+}
+
+/* Search Input */
+#searchInput {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    margin: 0 auto 30px auto;  /* top:0, left/right:auto, bottom:30px */
+    font-size: 1rem;
+    display: block;            /* needed for margin auto to work */
+}
+
+/* Carousel */
+
+.carousel-wrapper {
+    display: flex;
+    justify-content: left;
+    overflow-x: auto;
+    padding: 0 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+    box-sizing: border-box;
+}
+
+.carousel {
+    display: flex;
+    justify-content: flex-start;      /* centers items in viewport initially */
+    align-items: flex-end;          /* vertically centers items */
+    overflow-x: auto;             /* horizontal scroll */
+    scroll-behavior: smooth;      /* smooth scrolling */
+    gap: 20px;                    /* spacing between cards */
+    padding: 20px;         /* spacing for scroll bar */
+    padding-top: 40px;
+    padding-bottom: 30px;
+    padding-left: 50%;
+    padding-right: 50%;
+    scroll-snap-type: x mandatory;/* enable horizontal snapping */
+    -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+    flex-wrap: nowrap;            /* force single row */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+    display: none; /* hide scroll bar */
+}
+
+/* .carousel .anime-item:first-child {
+    display: none;
+}*/
+
+.carousel .anime-item:last-child {
+    margin-right: 20px;
+}
+
+/* Anime Card */
+.anime-item {
+    background-color: #ffffff;
+    flex: 0 0 500px;
+    border-radius: 20px;          /* ensures corners are rounded */
+    max-width: 500px;
+    min-width: 500px;
+    width: 500px;
+    height: 400px;
+    box-sizing: border-box;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    display: flex;                /* enable flex layout */
+    flex-direction: column;       /* stack content vertically */
+    justify-content: flex-end;    /* bottom justify content */
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: rgba(187, 187, 187, 0.274) 0px 4px 8px;
+    scroll-snap-align: center;
+    transition: transform 0.3s ease, z-index 0.3s ease;
+}
+
+/* Overlay */
+.anime-item::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255, 255, 255, 0.46);
+    z-index: 0;
+    border-radius: 20px;         /* match parent border-radius */
+}
+
+/* Ensure child elements are above overlay */
+.anime-item * {
+    position: relative;
+    z-index: 1;
+}
+
+.anime-item.center {
+    transform: scale(1.2);
+    z-index: 2;
+}
+
+.anime-item.hover {
+    transform: scale(1.05);
+}
+
+/* Title */
+.anime-item h2 {
+    display: inline-block;
+    margin: 0px;
+    margin-right: 10px;
+    font-size: 30px;
+    line-height: 1.2;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color:#000000;
+}
+
+/* Stars */
+.star {
+    font-size: 50px;
+    color: #00000079;
+    transition: color 0.25s ease;
+    user-select: none;
+}
+
+/* Sars cont. - Selection */
+.star.selected {
+    color: gold;
+}
+
+/* Hover effect */
+.star:hover,
+.star:hover ~ .star {
+    color: rgba(0, 0, 0, 0.144);
+}
+
+.star:active {
+    transform: scale (1.1);
+}
+
+/* Progress Section */
+.progress-section {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #000000;
+    font-weight: bold;
+}
+
+.progress-section input {
+    width: 50px;
+    text-align: center;
+    margin: 0 2px;
+    background-color: #222;
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 4px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #444;
+    border-radius: 5px;
+    margin-top: 5px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: gold;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    margin-top: 4px;
+    font-weight: bold;
+    color: black;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.carousel-dots .dot {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    margin: 0 3px;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    scroll-behavior: smooth;
+    overflow: auto;
+}
+
+.carousel-dots .dot.active {
+    background-color: gold;
+    transform: scale(1.2);
+}
+
+.carousel-dots .dot:hover {
+    transform: scale(3.0);
+}
+
+.flip-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 50px;
+    background: #ffffff93;
+    color: black;
+    font-weight: bold;
+    font-size: x-large;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    z-index: 1;
+}
+
+.imdb-logo {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: inline-block;
+    background: rgba(0,0,0,0.4);
+    padding: 4px;
+    border-radius: 6px;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.imdb-logo img {
+    width: 40px;
+    height: auto;
+    display: block;
+}
+
+.imdb-logo:hover {
+    transform: scale(1.1);
+    background: rgba(0,0,0,0.6);
+}
+
+.notes-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: x-large;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+    padding: 6px 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    z-index: 1;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.anime-item.center .flip-btn {
+    z-index: 5;
+}
+
+.notes-button:hover {
+    background: rgba(255, 255, 255, 0.308);
+    transform: scale(1.1);
+}
+
+.completion {
+    position: absolute;      /* place it on top of the card */
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: bold;
+    color: black;
+    z-index: 3;              /* above overlays */
+    background: rgba(255, 255, 255, 0.637);
+    padding: 4px 8px;
+    border-radius: 12px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.completion-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
