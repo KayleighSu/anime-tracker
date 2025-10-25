@@ -1,13 +1,16 @@
 const cacheName = "anime-tracker-v1";
 const assets = [
     "/",
-    "/Tracker.html",
+    "/index.html",
     "/Tracker.css",
     "/Tracker.js",
     "/images/",
+    "notes.txt",
+    "notes.html",
+    
 ];
 
-self.addEventListener("install", e => {
+self.addEventListener("install", event => {
     e.waitUntil(
         caches.open(cacheName).then(cache => {
             return cache.addAll(assets);
@@ -21,4 +24,5 @@ self.addEventListener("fetch", e => {
             return response || fetch(e.request);
         })
     );
+
 });
