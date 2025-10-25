@@ -8,9 +8,7 @@ const assets = [
   "/Tracker.js",
   "/notes.html",
   "/notes.txt",
-  // add specific image files here:
-  "/images/alullinthesea.jpg",
-  // add more images as needed
+  
 ];
 
 // Install event: cache files
@@ -38,3 +36,4 @@ self.addEventListener("fetch", event => {
     caches.match(event.request).then(response => response || fetch(event.request))
   );
 });
+
