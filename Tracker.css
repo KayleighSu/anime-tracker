@@ -84,6 +84,40 @@ body {
     transition: transform 0.3s ease, z-index 0.3s ease;
 }
 
+/* Responsive Changes */
+@media (max-width: 768px) {
+    .carousel {
+        flex-direction: column;
+        overflow-x: hidden;
+        overflow-y: auto;
+        height: 100vh;
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .anime-item {
+        flex: 0 0 auto;
+        width: 90%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .stars {
+        justify-content: center;
+    }
+
+    .completion {
+        top: 10px;
+        right: 10px;
+        bottom: auto;
+    }
+
+    .progress-section {
+        width: 90%;
+        margin: 10px auto;
+    }
+}
+
 /* Overlay */
 .anime-item::before {
     content: "";
@@ -301,4 +335,5 @@ h1 {
     width: 20px;
     height: 20px;
     cursor: pointer;
+
 }
