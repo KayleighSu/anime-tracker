@@ -5,6 +5,10 @@ body {
     color: #000000;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 /* Search Input */
 #searchInput {
     width: 100%;
@@ -17,20 +21,6 @@ body {
     display: block;            /* needed for margin auto to work */
 }
 
-/* Seach Input: Mobile */
-@media (max-width: 600px) {
-    #searchInput {
-        width: 90%;
-        padding: 5%;
-        border-radius: 2px;
-        border: none;
-        margin: 0 auto 10 auto;
-        font-size: 1rem;
-        display: block;
-    }
-}
-
-
 /* Carousel */
 
 .carousel-wrapper {
@@ -42,6 +32,32 @@ body {
     padding-right: 50px;
     box-sizing: border-box;
 }
+
+/*
+@media (max-width: 600px) {
+  .carousel {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 10px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .anime-item {
+    flex: 0 0 90%;
+    max-width: 90%;
+    height: auto;
+    aspect-ratio: 3/4;
+    margin: 0 auto 15px auto;
+  }
+}
+*/
 
 .carousel {
     display: flex;
@@ -65,7 +81,116 @@ body {
 .carousel::-webkit-scrollbar {
     display: none; /* hide scroll bar */
 }
+/* MOBILE-ONLY OVERRIDE */
+@media (max-width: 600px) {
 
+  /* Carousel wrapper */
+  .carousel-wrapper {
+    display: block !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Carousel */
+  .carousel {
+    display: flex !important;
+    flex-direction: column !important; /* stack vertically */
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 65px !important;
+    padding: 30px 0 !important;
+    width: 100% !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    scroll-snap-type: none !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .anime.item.center,
+  .anime.item.hover {
+    transform: none !important;
+    z-index: auto !important;
+  }
+
+  /* Anime cards */
+  .anime-item {
+    flex: none !important;
+    width: 90% !important;
+    max-width: 360px !important;
+    min-width: unset !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important; /* vertical centering */
+    align-items: center !important;     /* horizontal centering */
+    text-align: center !important;
+    padding: 15px !important;
+    margin: 0 auto 20px auto !important; /* center + spacing */
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    overflow: hidden !important;
+    border-radius: 20px !important;
+    box-shadow: rgba(255, 255, 255, 0.493) 0px 4px 8px !important;
+    scroll-snap-align: none !important;
+    margin-bottom: 30px;
+  }
+
+  /* Overlay adjustments */
+  .anime-item::before {
+    background: rgba(255, 255, 255, 0.719) !important;
+  }
+
+  /* Title adjustments */
+  .anime-item h2 {
+    font-size: clamp(2rem, 4vw, 1.6rem) !important;
+    word-wrap: break-word !important;
+    margin: 10px 0 !important;
+    text-align: center !important;
+    display: block !important;
+  }
+
+  /* Progress section */
+  .progress-section {
+    font-size: 0.9rem !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  .progress-section input {
+    width: 50px !important;
+    margin: 0 2px !important;
+  }
+
+  /* Carousel dots */
+  .carousel-dots {
+    justify-content: center !important;
+    gap: 10px !important;
+    margin-top: 20px !important;
+  }
+
+  .carousel-dots .dot {
+    width: 6px !important;
+    height: 6px !important;
+  }
+
+  /* Flip button & notes button adjustments if needed */
+  .flip-btn, .notes-button {
+    position: absolute !important; /* prevent cutting off card edges */
+    top: 10px !important;
+    left: 10px !important;
+    transform: none !important;
+    z-index: 3 !important;
+  }
+
+  /* Completion badge adjustments */
+  .completion {
+    position: relative !important;
+    bottom: unset !important;
+    right: unset !important;
+    margin-top: 40px;
+  }
+}
 /* .carousel .anime-item:first-child {
     display: none;
 }*/
@@ -96,49 +221,6 @@ body {
     box-shadow: rgba(187, 187, 187, 0.274) 0px 4px 8px;
     scroll-snap-align: center;
     transition: transform 0.3s ease, z-index 0.3s ease;
-}
-
-/* Responsive Changes */
-@media (max-width: 600px) {
-    .carousel {
-        flex-direction: column;
-        overflow-x: hidden;
-        overflow-y: auto;
-        height: auto;
-        gap: 5px;
-        padding: 5px;
-        scroll-snap-type: y mandatory;
-    }
-
-    .anime-item {
-        flex: 0 0 90%;
-        width: 90%;
-        aspect-ratio: 3/4;
-        margin: 0 5px;
-    }
-
-    .anime-item h2 {
-        font-size: 1rem;
-    }
-
-    .stars {
-        justify-content: center;
-        font-size: 0.9rem;
-    }
-
-    .completion {
-        top: 10px;
-        right: 10px;
-        bottom: auto;
-        font-size: 0.9rem;
-    }
-
-    .progress-section {
-        width: 90%;
-        margin: 10px auto;
-        font-size: 0.8rem;
-    }
-
 }
 
 /* Overlay */
@@ -359,4 +441,3 @@ h1 {
     height: 20px;
     cursor: pointer;
 }
-
